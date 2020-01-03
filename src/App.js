@@ -1,14 +1,14 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import {
   BrowserRouter as Router,
   Route,
   Link,
   NavLink
-} from "react-router-dom";
-import SignUpForm from "./pages/SignUpForm";
-import SignInForm from "./pages/SignInForm";
-import Home from "./pages/Home";
-import "./App.css";
+} from 'react-router-dom';
+import SignUpForm from './pages/SignUpForm';
+import SignInForm from './pages/SignInForm';
+import Home from './pages/Home';
+import './App.css';
 
 class App extends Component {
   render() {

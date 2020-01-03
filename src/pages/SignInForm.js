@@ -1,20 +1,20 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import firebase from "../config/fire";
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import firebase from '../config/fire';
 
 class SignInForm extends Component {
   constructor() {
     super();
     this.state = {
-      email: "",
-      password: ""
+      email: '',
+      password: ''
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   handleChange(e) {
     let target = e.target;
-    let value = target.type === "checkbox" ? target.checked : target.value;
+    let value = target.type === 'checkbox' ? target.checked : target.value;
     let name = target.name;
 
     this.setState({
@@ -24,13 +24,18 @@ class SignInForm extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-      
-    
-      firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password).then(()=>{this.props.history.push("/home")}).catch(function(error){
-        console.log(error)
-    console.log("The form was submittet with the following data:");
-    console.log(this.state);
-  })}
+
+    firebase
+      .auth()
+      .signInWithEmailAndPassword(this.state.email, this.state.password)
+      .then(() => {
+        this.props.history.push('/home');
+      })
+      .catch(function(error) {
+        console.log(error);
+        console.log('The form was submittet with the following data:');
+      });
+  }
 
   render() {
     return (
