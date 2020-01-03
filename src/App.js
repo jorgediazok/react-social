@@ -14,14 +14,18 @@ import UserLogged from './pages/UserLogged';
 class App extends Component {
   state = {
     img:
-      'https://upload.wikimedia.org/wikipedia/commons/6/63/GlobalSocial_850.jpg'
+      'https://www.trecebits.com/wp-content/uploads/2016/09/publicidad-internet-2.jpg'
   };
   render() {
     return (
       <Router>
         <div className="App">
           <div className="App__Aside">
-            <img src={this.state.img} alt="foto" />
+            <img
+              src={this.state.img}
+              alt="foto"
+              style={{ width: '100%', height: '100%' }}
+            />
           </div>
 
           <div className="App__Form">
