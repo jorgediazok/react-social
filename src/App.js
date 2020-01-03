@@ -9,13 +9,20 @@ import SignUpForm from './pages/SignUpForm';
 import SignInForm from './pages/SignInForm';
 import Home from './pages/Home';
 import './App.css';
+import UserLogged from './pages/UserLogged';
 
 class App extends Component {
+  state = {
+    img:
+      'https://upload.wikimedia.org/wikipedia/commons/6/63/GlobalSocial_850.jpg'
+  };
   render() {
     return (
       <Router>
         <div className="App">
-          <div className="App__Aside"></div>
+          <div className="App__Aside">
+            <img src={this.state.img} alt="foto" />
+          </div>
 
           <div className="App__Form">
             <div className="PageSwitcher">

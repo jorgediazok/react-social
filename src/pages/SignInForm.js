@@ -3,8 +3,9 @@ import { Link } from 'react-router-dom';
 import firebase from '../config/fire';
 
 class SignInForm extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+    console.log(props);
     this.state = {
       email: '',
       password: ''
@@ -12,6 +13,7 @@ class SignInForm extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
+
   handleChange(e) {
     let target = e.target;
     let value = target.type === 'checkbox' ? target.checked : target.value;
@@ -29,7 +31,10 @@ class SignInForm extends Component {
       .auth()
       .signInWithEmailAndPassword(this.state.email, this.state.password)
       .then(() => {
+        console.log(this.props.history);
         this.props.history.push('/home');
+        /*const userLog = [];
+        return userLog.push(this.state.email);*/
       })
       .catch(function(error) {
         console.log(error);
