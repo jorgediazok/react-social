@@ -1,23 +1,27 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import firebase from "../config/fire";
-
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import firebase from '../config/fire';
 
 class SignUpForm extends Component {
   constructor() {
     super();
     this.state = {
-      email: "",
-      password: "",
-      name: "",
+      email: '',
+      password: '',
+      name: '',
       hasAgreed: false
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+
+    this.emailInput = React.createRef();
+    this.passwordInput = React.createRef();
+    this.nameInput = React.createRef();
   }
+
   handleChange(e) {
     let target = e.target;
-    let value = target.type === "checkbox" ? target.checked : target.value;
+    let value = target.type === 'checkbox' ? target.checked : target.value;
     let name = target.name;
 
     this.setState({
@@ -27,26 +31,23 @@ class SignUpForm extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    if (this.state.hasAgreed){     
-    
-    firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).catch(function(error){
-      console.log(error)
-    })
-
-    console.log("The form was submittet with the following data:");
-    console.log(this.state);
-  
-  }
-
+    if (this.state.hasAgreed) {
+      firebase
+        .auth()
+        .createUserWithEmailAndPassword(this.state.email, this.state.password)
+        .catch(function(error) {
+          console.log(error);
+        });
+      this.nameInput.current.value = '';
+      this.passwordInput.current.value = '';
+      this.emailInput.current.value = '';
+      alert('You Signed Up!');
+    }
   }
   render() {
     return (
       <div className="FormCenter">
-        <form
-          onSubmit={this.handleSubmit}
-          className="FormFields"
-          onSubmit={this.handleSubmit}
-        >
+        <form onSubmit={this.handleSubmit} className="FormFields">
           <div className="FormField">
             <label className="FormField__Label" htmlFor="name">
               Full Name
@@ -59,6 +60,7 @@ class SignUpForm extends Component {
               name="name"
               value={this.state.name}
               onChange={this.handleChange}
+              ref={this.nameInput}
             />
           </div>
 
@@ -74,6 +76,7 @@ class SignUpForm extends Component {
               name="password"
               value={this.state.password}
               onChange={this.handleChange}
+              ref={this.passwordInput}
             />
           </div>
           <div className="FormField">
@@ -88,6 +91,7 @@ class SignUpForm extends Component {
               name="email"
               value={this.state.email}
               onChange={this.handleChange}
+              ref={this.emailInput}
             />
           </div>
           <div className="FormField">
@@ -99,7 +103,7 @@ class SignUpForm extends Component {
                 value={this.state.hasAgreed}
                 onChange={this.handleChange}
               />
-              I agree all statements in{" "}
+              I agree all statements in{' '}
               <a href="" className="FormField__TermsLink">
                 Terms of Service
               </a>
